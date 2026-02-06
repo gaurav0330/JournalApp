@@ -30,6 +30,9 @@ public class User {
 
     private List<String> roles;
 
+    private String email;
+    private boolean isSentimentAnalysis;
+
     @DBRef
     private List<JournalEntry> journalEntries = new ArrayList<>();
 }

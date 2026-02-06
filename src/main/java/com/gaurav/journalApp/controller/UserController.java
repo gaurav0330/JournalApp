@@ -1,7 +1,9 @@
 package com.gaurav.journalApp.controller;
 
+import com.gaurav.journalApp.api.response.WeatherResponce;
 import com.gaurav.journalApp.entity.User;
 import com.gaurav.journalApp.services.UserService;
+import com.gaurav.journalApp.services.WeatherService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +22,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private WeatherService weatherService;
 
 
 //    @GetMapping
@@ -51,4 +56,19 @@ public class UserController {
         userService.deleteByUsername(username);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @GetMapping
+    public ResponseEntity<String> greetings(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        WeatherResponce weatherRes = weatherService.getWeather("Mumbai");
+        String greeting = "";
+
+        if(weatherRes != null && weatherRes.getCurrent() != null){
+            greeting = ", Weathers Feels like " + weatherRes.getCurrent().getFeelslike();
+        }
+        return new ResponseEntity<>("HI " + username + greeting,HttpStatus.OK);
+    }
+
 }

@@ -22,6 +22,9 @@ target/
 *.yml
 *.log
 /htmlReport
+src/main/resources/application-dev.yml
+src/main/resources/application-pro.yml
+src/main/resources/application.yml
 
 ### NetBeans ###
 /nbproject/private/

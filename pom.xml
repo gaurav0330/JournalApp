@@ -28,9 +28,6 @@
 	</scm>
 	<properties>
 		<java.version>17</java.version>
-		<sonar.host.url>http://localhost:9000</sonar.host.url>
-		<sonar.projectKey>journalApp</sonar.projectKey>
-		<sonar.projectName>journalApp</sonar.projectName>
 	</properties>
 	<dependencies>
 		<dependency>

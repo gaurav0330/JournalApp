@@ -1,5 +1,6 @@
 package com.gaurav.journalApp.controller;
 
+import com.gaurav.journalApp.cache.AppCache;
 import com.gaurav.journalApp.entity.User;
 import com.gaurav.journalApp.services.JournalEntryService;
 import com.gaurav.journalApp.services.UserService;
@@ -17,6 +18,9 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private AppCache appCache;
+
     @GetMapping("/all-users")
     public ResponseEntity<List<User>> getAllUsers(){
         List<User> all = userService.getAll();
@@ -31,4 +35,8 @@ public class AdminController {
         userService.saveAdmin(user);
     }
 
+    @GetMapping("/clear-app-cache")
+    public void cleanAppCache(){
+        appCache.init();
+    }
 }
